@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Category Page</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <style>
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        padding: 1rem;
+      }
+      .gallery img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <div id="header"></div>
+
+    <h1 id="category-title"></h1>
+    <div class="gallery" id="image-gallery"></div>
+
+    <div id="footer"></div>
+
+    <script src="header/header.js"></script>
+    <script src="footer/footer.js"></script>
+
+    <script>
+      // Sample image lists for each category
+      const lightingImages = [
+        "./img/categories/lighting1.jpeg",
+        "./img/categories/lighting2.jpeg",
+        "./img/categories/lighting3.jpeg",
+      ];
+
+      const Pallettes = [
+        "./img/categories/furniture.jpg",
+        "./img/categories/furniture2.jpg",
+        "./img/categories/furniture3.jpg",
+        "./img/categories/furniture4.jpg",
+        "./img/categories/furniture5.jpg",
+        "./img/categories/furniture6.jpg",
+      ];
+      const interiorDesignImages = [
+        "./img/categories/interior1.jpg",
+        "./img/categories/interior2.jpg",
+        "./img/categories/interior3.jpg",
+      ];
+
+      const wardrobeImages = [
+        "./img/categories/shelf1.jpeg",
+        "./img/categories/shelf2.jpg",
+        "./img/categories/shelf3.jpg",
+      ];
+
+      const doorsWallsImages = [
+        "./img/categories/wall1.jpg",
+        "./img/categories/wall2.jpeg",
+        "./img/categories/wall3.jpeg",
+      ];
+
+      const ceilingImages = [
+        "./img/categories/ceiling2.jpg",
+        "./img/categories/ceiling3.jpg",
+      ];
+
+      // Get category from URL query string
+      const params = new URLSearchParams(window.location.search);
+      const type = params.get("type");
+
+      const gallery = document.getElementById("image-gallery");
+      const title = document.getElementById("category-title");
+
+      let images = [];
+      switch (type) {
+        case "lighting":
+          images = lightingImages;
+          title.textContent = "Lighting";
+          break;
+        case "palettes":
+          images = Pallettes;
+          title.textContent = "Pallettes";
+          break;
+        case "interior":
+          images = interiorDesignImages;
+          title.textContent = "Interior Design";
+          break;
+        case "wardrobes-shelves":
+          images = wardrobeImages;
+          title.textContent = "Wardrobes and Shelves";
+          break;
+        case "doors-walls":
+          images = doorsWallsImages;
+          title.textContent = "Doors and Walls";
+          break;
+        case "ceiling":
+          images = ceilingImages;
+          title.textContent = "Ceiling";
+          break;
+        default:
+          title.textContent = "Unknown Category";
+      }
+
+      // Render images
+      images.forEach((url) => {
+        const img = document.createElement("img");
+        img.src = url;
+        img.alt = "Listing image";
+        gallery.appendChild(img);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<div id="left">
+        <h2>PROJECTS</h2>
+        <h3>PROFESSIONAL QUOTE</h3>
+        <P>Project quote is where our professionalism begins. 
+          We always do our best to offer you the best possible options for your project and to overcome 
+          any problem.</P>
+
+        <h3>ARCHITECTURAL PLANNING</h3>
+        <P>We have the technical know-how to help you through every step of the process, 
+          from the creation of drawings to secure planning consent through the actual construction 
+          and ultimately to the exciting stage of furnishing and styling, whether you're looking to add 
+          a summer house to your garden, extend your property, or build a new home. You will always feel 
+          included, informed, and in charge because you will entirely be made aware of every development 
+          with your having complete control over all decision-making. Relationships and trust are essential 
+          to a project's success, and by working with us from the start, you will have established a 
+          relationship with our professionals, providing you with the benefit of continuity, assurance 
+          and freedom to modify your vision.</P>
+      </div>
+
+      <div id="right">
+        <video width="700" height="400" controls>
+          <source src="./img/vidio/vd0.mkv" type="">
+        </video>
+      </div>
+      
+    </div>
