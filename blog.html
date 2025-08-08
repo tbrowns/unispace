@@ -4,10 +4,425 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="./css/all.css" />
     <title>UNISPACE OPPORTUNITIES LTD</title>
     <link rel="icon" type="image/x-icon" href="./img/FAV/favicon.ico" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f8f9fa;
+      }
+
+      #page-header {
+        background: linear-gradient(135deg, #2d5016 0%, #1a3d0a 100%);
+        width: 100%;
+        height: 30vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+        padding: 10px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      #page-header::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 70%
+        );
+        animation: float 8s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-30px) rotate(180deg);
+        }
+      }
+
+      #page-header h1 {
+        color: white;
+        font-size: 2.5rem;
+        font-weight: 300;
+        margin-bottom: 8px;
+        letter-spacing: 2px;
+        z-index: 1;
+        position: relative;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      #page-header p {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.2rem;
+        font-weight: 300;
+        z-index: 1;
+        position: relative;
+      }
+
+      #blog {
+        margin: 0 auto;
+        padding: 80px 40px;
+        background: white;
+        position: relative;
+      }
+
+      #blog::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #2d5016, #90c695, #2d5016);
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-header h2 {
+        font-size: 2.8rem;
+        color: #2d5016;
+        font-weight: 300;
+        margin-bottom: 15px;
+        position: relative;
+      }
+
+      .section-header h2::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: #2d5016;
+        border-radius: 2px;
+      }
+
+      .section-header p {
+        color: #666;
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.8;
+      }
+
+      .blog-box {
+        display: flex;
+        align-items: center;
+        margin-bottom: 80px;
+        position: relative;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        opacity: 0;
+        animation: slideInUp 0.8s ease-out forwards;
+      }
+
+      .blog-box:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .blog-box:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .blog-box:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .blog-box:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .blog-box:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .blog-box:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+
+      .blog-box:nth-child(even) .blog-details {
+        padding-right: 60px;
+        padding-left: 40px;
+      }
+
+      .blog-box:nth-child(odd) .blog-details {
+        padding-left: 60px;
+        padding-right: 40px;
+      }
+
+      .blog-img {
+        flex: 1;
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .blog-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .blog-box:hover .blog-img img {
+        transform: scale(1.1);
+      }
+
+      .blog-details {
+        flex: 1.2;
+        padding: 50px 40px;
+        background: white;
+        position: relative;
+      }
+
+      .blog-details h4 {
+        font-size: 2rem;
+        color: #2d5016;
+        margin-bottom: 20px;
+        font-weight: 400;
+        position: relative;
+      }
+
+      .blog-details h4::before {
+        content: "";
+        position: absolute;
+        left: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 40px;
+        background: #2d5016;
+        border-radius: 2px;
+      }
+
+      .blog-details p {
+        color: #666;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        text-align: justify;
+      }
+
+      .blog-box h1 {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 1.2rem;
+        color: white;
+        background: #2d5016;
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-weight: 500;
+        z-index: 10;
+        box-shadow: 0 4px 15px rgba(45, 80, 22, 0.3);
+      }
+
+      /* Service Icons */
+      .blog-details::after {
+        content: "";
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background: rgba(45, 80, 22, 0.1);
+        border-radius: 50%;
+        border: 2px solid #2d5016;
+      }
+
+      .blog-box:nth-child(1) .blog-details::after {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%232d5016' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z'/%3E%3C/svg%3E");
+        background-size: 30px;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      .blog-box:nth-child(2) .blog-details::after {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%232d5016' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z'/%3E%3C/svg%3E");
+        background-size: 30px;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      .blog-box:nth-child(3) .blog-details::after {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%232d5016' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z'/%3E%3C/svg%3E");
+        background-size: 30px;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      .blog-box:nth-child(4) .blog-details::after {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%232d5016' viewBox='0 0 24 24'%3E%3Cpath d='M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z'/%3E%3C/svg%3E");
+        background-size: 30px;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      /* Call to Action Section */
+      .cta-section {
+        background: #2d5016;
+        padding: 60px 40px;
+        text-align: center;
+        margin-top: 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.05) 0%,
+          transparent 70%
+        );
+        animation: rotate 20s linear infinite;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .cta-section h3 {
+        color: white;
+        font-size: 2.2rem;
+        margin-bottom: 15px;
+        font-weight: 300;
+        z-index: 1;
+        position: relative;
+      }
+
+      .cta-section p {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        z-index: 1;
+        position: relative;
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 15px 40px;
+        background: white;
+        color: #2d5016;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        z-index: 1;
+        position: relative;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        #page-header h1 {
+          font-size: 2.2rem;
+          letter-spacing: 1px;
+        }
+
+        #page-header p {
+          font-size: 1.1rem;
+        }
+
+        #blog {
+          padding: 50px 20px;
+        }
+
+        .section-header h2 {
+          font-size: 2.2rem;
+        }
+
+        .blog-box {
+          flex-direction: column !important;
+          margin-bottom: 50px;
+        }
+
+        .blog-box:nth-child(even) .blog-details,
+        .blog-box:nth-child(odd) .blog-details {
+          padding: 30px 25px;
+        }
+
+        .blog-img {
+          height: 250px;
+        }
+
+        .blog-details h4 {
+          font-size: 1.6rem;
+        }
+
+        .blog-details h4::before {
+          left: -15px;
+          height: 30px;
+        }
+
+        .blog-box h1 {
+          position: static;
+          margin: 15px auto 0;
+          display: inline-block;
+        }
+
+        .cta-section {
+          padding: 50px 20px;
+        }
+
+        .cta-section h3 {
+          font-size: 1.8rem;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -20,9 +435,17 @@
     </section>
 
     <section id="blog">
+      <div class="section-header">
+        <h2>OUR SERVICES</h2>
+        <p>
+          We specialize in creating beautiful, functional spaces tailored to
+          your unique needs and vision
+        </p>
+      </div>
+
       <div class="blog-box">
         <div class="blog-img">
-          <img src="./img/blog/ward-dro-be.cabin.jpg" alt="" />
+          <img src="./img/blog/ward-dro-be.cabin.jpg" alt="Custom Wardrobes" />
         </div>
         <div class="blog-details">
           <h4>Wardrobes</h4>
@@ -36,17 +459,18 @@
             hanging rods, as well as lighting and mirrors.
           </p>
         </div>
-        <h1>01/01</h1>
+        <h1>01</h1>
       </div>
+
       <div class="blog-box">
         <div class="blog-img">
-          <img src="./img/blog/gn69.jpg" alt="" />
+          <img src="./img/blog/gn69.jpg" alt="Ceiling Solutions" />
         </div>
         <div class="blog-details">
           <h4>Ceiling</h4>
           <p>
             Our company has extensive experience working with a variety of
-            ceiling materials and finishes. Some of the ceiling work wen have
+            ceiling materials and finishes. Some of the ceiling work we have
             done includes installing drywall ceilings, plastering and texturing
             ceilings, and installing wood, metal, and tile ceilings. We have
             also worked on projects involving the repair and restoration of
@@ -54,28 +478,33 @@
             ceilings, such as suspended ceilings and acoustical ceilings.
           </p>
         </div>
-        <h1>01/02</h1>
+        <h1>02</h1>
       </div>
+
       <div class="blog-box">
         <div class="blog-img">
-          <img src="./img/blog/gn-9.jpeg" alt="" />
+          <img src="./img/blog/gn-9.jpeg" alt="Gypsum Decorations" />
         </div>
         <div class="blog-details">
-          <h4>Gypsum decors</h4>
+          <h4>Gypsum Decors</h4>
           <p>
             We have extensive experience working with gypsum and other boards to
-            make elegant and cool furniture decorations for wall and tv cabinets
-            to other ideas that might not be mentioned in our projects.
+            make elegant and cool furniture decorations for wall and TV cabinets
+            to other ideas that might not be mentioned in our projects. Our
+            creative approach ensures each piece is both functional and
+            aesthetically pleasing, transforming ordinary spaces into
+            extraordinary environments.
           </p>
         </div>
-        <h1>01/03</h1>
+        <h1>03</h1>
       </div>
+
       <div class="blog-box">
         <div class="blog-img">
-          <img src="./img/blog/gn56.jpg" alt="" />
+          <img src="./img/blog/gn56.jpg" alt="Interior Design" />
         </div>
         <div class="blog-details">
-          <h4>Interior</h4>
+          <h4>Interior Design</h4>
           <p>
             We are involved in creating a functional and cohesive design for the
             interior of a building, taking into account the building's
@@ -84,21 +513,28 @@
             plan for a space, taking into account the client's style, budget,
             and functional needs. We are also responsible for selecting
             finishes, materials, and furniture, and also to ensure that the
-            project is completed on time and within budget. Our work is a wide
-            field that revolves around residential, commercial, and hospitality
-            spaces, and can range from small, single room renovations to large,
-            complex projects involving multiple spaces.
+            project is completed on time and within budget. Our work spans
+            residential, commercial, and hospitality spaces, ranging from small
+            renovations to large, complex projects.
           </p>
         </div>
-        <h1>01/04</h1>
+        <h1>04</h1>
       </div>
+    </section>
+
+    <section class="cta-section">
+      <h3>Ready to Transform Your Space?</h3>
+      <p>
+        Let's work together to bring your vision to life. Contact us today for a
+        consultation.
+      </p>
+      <a href="#" class="cta-button">Get Started Today</a>
     </section>
 
     <div id="footer"></div>
 
     <script src="header/header.js"></script>
     <script src="footer/footer.js"></script>
-
     <script src="script.js"></script>
   </body>
 </html>

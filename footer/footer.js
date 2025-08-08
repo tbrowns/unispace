@@ -3,7 +3,7 @@ fetch("footer/footer.html")
   .then((data) => {
     const tempDiv = document.createElement("div");
     tempDiv.innerHTML = data;
-    const template = tempDiv.querySelector("template#footer-template");
+    const template = tempDiv.querySelector("#footer-template");
     if (template) {
       document
         .getElementById("footer")

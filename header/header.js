@@ -62,13 +62,14 @@ function highlightActiveLink() {
 function initializeMobileMenu() {
   const bar = document.getElementById("bar");
   const navbar = document.getElementById("navbar");
-  const closeBtn = document.getElementById("close");
-  const mobileBtn = document.getElementById("mobile");
+  const closeBtn = document.getElementById("close-menu");
+  const mobileBtn = document.getElementById("open-menu");
 
   // Fix: Show/hide icons correctly
   if (bar && navbar && closeBtn && mobileBtn) {
     // Open mobile menu
     mobileBtn.addEventListener("click", function (e) {
+      consolest.log("Mobile menu button clicked");
       e.preventDefault();
       e.stopPropagation();
       openMobileMenu();

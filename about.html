@@ -4,10 +4,259 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="./css/all.css" />
     <title>UNISPACE OPPORTUNITIES LTD</title>
-    <link rel="icon" type="image/x-icon" href="./img/FAV/favicon.ico" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      }
+
+      /* Header Section */
+      #page-header {
+        background: linear-gradient(135deg, #014202 0%, #026d04 100%);
+        color: white;
+        text-align: center;
+        padding: 80px 20px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      #page-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="rgba(255,255,255,0.1)"><polygon points="0,0 1000,0 1000,100 0,80"/></svg>');
+        background-size: cover;
+      }
+
+      #page-header p {
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        position: relative;
+        z-index: 1;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      /* Main Content Section */
+      #about-head {
+        display: flex;
+        align-items: flex-start;
+        gap: 60px;
+        padding: 80px 5%;
+        max-width: 1400px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        margin-top: -40px;
+        position: relative;
+        z-index: 2;
+      }
+
+      #about-head div {
+        flex: 1;
+        animation: fadeInLeft 1s ease-out;
+      }
+
+      #about-head h2 {
+        font-size: 2.2rem;
+        color: #014202;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 15px;
+      }
+
+      #about-head h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, #014202, #026d04);
+        border-radius: 2px;
+      }
+
+      #about-head p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 40px;
+        text-align: justify;
+      }
+
+      /* Image Section */
+      #about-head img {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: fadeInRight 1s ease-out;
+      }
+
+      #about-head img:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Marquee Enhancement */
+      .marquee-container {
+        background: linear-gradient(135deg, #014202 0%, #026d04 100%);
+        padding: 15px;
+        border-radius: 50px;
+        margin-top: 40px;
+        box-shadow: 0 10px 30px rgba(1, 66, 2, 0.3);
+        overflow: hidden;
+      }
+
+      .marquee-text {
+        color: white;
+        font-weight: bold;
+        font-size: 1.1rem;
+        text-align: center;
+        animation: scrollText 20s linear infinite;
+        white-space: nowrap;
+      }
+
+      /* Mission and Vision Cards */
+      .content-card {
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 30px;
+        border-left: 5px solid #014202;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .content-card:hover {
+        transform: translateX(10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes scrollText {
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        #page-header p {
+          font-size: 1.8rem;
+        }
+
+        #about-head {
+          flex-direction: column;
+          gap: 40px;
+          padding: 40px 20px;
+          margin-top: -20px;
+        }
+
+        #about-head h2 {
+          font-size: 1.8rem;
+        }
+
+        #about-head p {
+          font-size: 1rem;
+        }
+
+        #about-head img {
+          order: -1;
+          max-width: 100%;
+        }
+      }
+
+      /* Additional Visual Enhancements */
+      .section-divider {
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #014202, transparent);
+        margin: 30px 0;
+        border-radius: 1px;
+      }
+
+      /* Hover effects for content cards */
+      .content-card h2 {
+        transition: color 0.3s ease;
+      }
+
+      .content-card:hover h2 {
+        color: #026d04;
+      }
+
+      /* Add subtle background pattern */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(
+            circle at 25% 25%,
+            rgba(1, 66, 2, 0.02) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 75% 75%,
+            rgba(1, 66, 2, 0.02) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+        z-index: -1;
+      }
+    </style>
   </head>
 
   <body>
@@ -20,46 +269,63 @@
 
     <section id="about-head" class="section-p1">
       <div>
-        <h2>ABOUT</h2>
-        <p>
-          Unispace is a company that deals with interior design and renovation.
-          The company has been around from 2018 and growing ever since. It
-          offers services such as; Interior design, Decoration and Renovation
-          Services, Furniture Manufacturing and Commercial shop fitting.Our team
-          is comprised of talented designers who love what they do! They bring
-          out the best in every client by carefully listening to their needs and
-          helping them achieve their vision through thoughtful planning and
-          execution. We value our clients as we focus on excellent health and
-          safety record incorporated in our true service culture and willingness
-          to listen, as well as to our flexible and pragmatic attitude to design
-          and delivery. You will find us to be experts in our profession and to
-          be honest, personable and straight-dealing as people. We also are
-          great believers in the transformative power of creative collaboration.
-        </p>
-        <h2>MISSION</h2>
-        <p>
-          To create environments that deliver on every level; aesthetic,
-          practical, commercial, experiential, by applying intelligence to
-          design through developing personal vision for every project, setting
-          the most uncompromising standards and working side by side with our
-          clients to bring that vision to life and becoming world-class
-          designers and contractors of luxury hotels, resorts and private
-          residences.
-        </p>
-        <h2>VISION</h2>
-        <p>
-          To be ambitious, far-ranging and constantly innovating and always see
-          beyond the bounds of a brief to discover surprising and inspiring
-          possibilities.
-        </p>
+        <div class="content-card">
+          <h2>ABOUT</h2>
+          <p>
+            Unispace is a company that deals with interior design and
+            renovation. The company has been around from 2018 and growing ever
+            since. It offers services such as; Interior design, Decoration and
+            Renovation Services, Furniture Manufacturing and Commercial shop
+            fitting. Our team is comprised of talented designers who love what
+            they do! They bring out the best in every client by carefully
+            listening to their needs and helping them achieve their vision
+            through thoughtful planning and execution. We value our clients as
+            we focus on excellent health and safety record incorporated in our
+            true service culture and willingness to listen, as well as to our
+            flexible and pragmatic attitude to design and delivery. You will
+            find us to be experts in our profession and to be honest, personable
+            and straight-dealing as people. We also are great believers in the
+            transformative power of creative collaboration.
+          </p>
+        </div>
 
-        <br /><br />
+        <div class="section-divider"></div>
 
-        <marquee bgcolor="#ccc" loop="-1" scrollamount="5" width="100%"
-          >"UNISPACE OPPORTUNITIES LIMITED - Transform Your Space."</marquee
-        >
+        <div class="content-card">
+          <h2>MISSION</h2>
+          <p>
+            To create environments that deliver on every level; aesthetic,
+            practical, commercial, experiential, by applying intelligence to
+            design through developing personal vision for every project, setting
+            the most uncompromising standards and working side by side with our
+            clients to bring that vision to life and becoming world-class
+            designers and contractors of luxury hotels, resorts and private
+            residences.
+          </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-card">
+          <h2>VISION</h2>
+          <p>
+            To be ambitious, far-ranging and constantly innovating and always
+            see beyond the bounds of a brief to discover surprising and
+            inspiring possibilities.
+          </p>
+        </div>
+
+        <div class="marquee-container">
+          <div class="marquee-text">
+            "UNISPACE OPPORTUNITIES LIMITED - Transform Your Space."
+          </div>
+        </div>
       </div>
-      <img src="./img/about/abt-pres-log.jpg" alt="" data-tilt />
+
+      <img
+        src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+        alt="Interior Design Showcase"
+      />
     </section>
 
     <div id="footer"></div>
@@ -67,8 +333,41 @@
     <script src="./header/header.js"></script>
     <script src="./footer/footer.js"></script>
 
-    <script type="text/javascript" src="./vanilla-tilt.js"></script>
+    <script>
+      // Add smooth scroll behavior
+      document.documentElement.style.scrollBehavior = "smooth";
 
-    <script src="./script.js"></script>
+      // Add intersection observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      // Observe all content cards
+      document.querySelectorAll(".content-card").forEach((card) => {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(30px)";
+        card.style.transition = "all 0.6s ease";
+        observer.observe(card);
+      });
+
+      // Add parallax effect to header
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        const header = document.getElementById("page-header");
+        if (header) {
+          header.style.transform = `translateY(${scrolled * 0.3}px)`;
+        }
+      });
+    </script>
   </body>
 </html>

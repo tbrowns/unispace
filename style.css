@@ -7,7 +7,6 @@
 }
 
 html {
-  font-size: 10px;
   font-family: "Montserrat", sans-serif;
   scroll-behavior: smooth;
 }
@@ -650,103 +649,6 @@ section {
   font-weight: 700;
   color: #cce7d0;
   z-index: -9;
-}
-
-/* Process */
-#page-header {
-  background-image: url("./img/banner/b1.png");
-  width: 100%;
-  height: 20vh;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  flex-direction: column;
-  padding: 14px;
-}
-
-#proc-container {
-  padding: 90px 90px 40px 90px;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-#proc-container .proc-box {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  position: relative;
-  padding-bottom: 50px;
-}
-.proc-box:nth-child(odd) {
-  flex-direction: row;
-}
-
-.proc-box:nth-child(even) {
-  flex-direction: row-reverse;
-}
-
-#proc-container .proc-img {
-  width: 70%;
-  margin-right: 20px;
-}
-#proc-container .proc2-img {
-  width: 70%;
-  margin-right: 10px;
-  padding-left: 10px;
-}
-
-#proc-container img {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-}
-#proc-container .proc-details {
-  width: 50%;
-  margin-left: 10px;
-}
-
-#proc-container .proc2-details {
-  width: 50%;
-  margin-left: 10px;
-}
-#proc-container .proc-details p {
-  color: #000;
-}
-
-#proc-container .proc-details a {
-  text-decoration: none;
-  font-size: 13px;
-  color: #000;
-  font-weight: 700;
-  position: relative;
-  transition: 0.3s;
-}
-
-/* About page */
-#page-header {
-  background-color: #014202;
-}
-
-#about-head {
-  display: flex;
-  align-items: center;
-}
-
-#about-head img {
-  width: 60%;
-  height: auto;
-  display: block;
-}
-
-#about-head div {
-  max-width: 100%;
-}
-#about-head h2 {
-  font-size: 20px;
-}
-#about-head marquee {
-  color: black;
 }
 
 /*  contractdvsn */

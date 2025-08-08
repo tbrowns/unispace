@@ -1,5 +1,9 @@
 <template id="header-template">
-  <header class="header-main">
+  <script
+    src="https://kit.fontawesome.com/a1b33b12e3.js"
+    crossorigin="anonymous"
+  ></script>
+  <header class="header-main" id="header">
     <a href="dashboard.html" class="logo">
       <h4>UNISPACE OPPORTUNITIES</h4>
     </a>
@@ -22,12 +26,41 @@
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-      <button id="close" aria-label="Close menu">
-        <i class="fas fa-times"></i>
+      <button id="close-menu" aria-label="Close menu">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-x-icon lucide-x"
+        >
+          <path d="M18 6 6 18" />
+          <path d="m6 6 12 12" />
+        </svg>
       </button>
     </nav>
-    <button id="mobile" aria-label="Open menu">
-      <i id="bar" class="fas fa-bars"></i>
+    <button id="open-menu" aria-label="Open menu">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-menu-icon lucide-menu"
+      >
+        <path d="M4 12h16" />
+        <path d="M4 18h16" />
+        <path d="M4 6h16" />
+      </svg>
     </button>
   </header>
 
@@ -35,7 +68,7 @@
     /* Import Inter font */
     @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
     @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
-    
+
     /* Reset for header component only */
     .header-main,
     .header-main * {
@@ -46,14 +79,13 @@
 
     /* Header styles */
     .header-main {
-      position: sticky;
-      top: 0;
+      position: relative;
       z-index: 1000;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 100vw;
-      min-width: 100vw;
+      width: 100%;
+
       left: 0;
       right: 0;
       margin: 0 auto;
@@ -245,7 +277,7 @@
     }
 
     /* Mobile menu button styles */
-    #mobile {
+    #open-menu {
       display: none;
       align-items: center;
       justify-content: center;
@@ -258,12 +290,12 @@
     }
     /* Ensure menu icons are visible */
     #bar,
-    #close i {
+    #close-menu i {
       font-size: 1.5rem;
       color: #ffd700 !important;
       display: inline-block;
     }
-    #close {
+    #close-menu {
       display: none;
       position: absolute;
       top: 1.5rem;
@@ -282,7 +314,7 @@
       z-index: 1002;
     }
 
-    #mobile:hover {
+    #open-menu:hover {
       background: rgba(255, 215, 0, 0.2);
       transform: scale(1.05);
     }
@@ -292,7 +324,7 @@
       color: #ffd700;
     }
 
-    #close {
+    #close-menu {
       display: none;
       position: absolute;
       top: 1.5rem;
@@ -311,7 +343,7 @@
       z-index: 1002;
     }
 
-    #close:hover {
+    #close-menu:hover {
       background: #dc3545;
       color: white;
       transform: scale(1.1);
@@ -412,11 +444,7 @@
         background: rgba(255, 255, 255, 0.03);
       }
 
-      #mobile {
-        display: flex;
-      }
-
-      #close {
+      #open-menu {
         display: flex;
       }
     }
@@ -439,7 +467,7 @@
         padding: 4rem 1.5rem 2rem;
       }
 
-      #close {
+      #close-menu {
         top: 1rem;
         right: 1rem;
         width: 40px;
@@ -455,7 +483,7 @@
       }
       /* Ensure mobile menu button is always visible on small screens */
       @media (max-width: 900px) {
-        #mobile {
+        #open-menu {
           display: flex !important;
           position: absolute;
           right: 1rem;
@@ -465,12 +493,12 @@
         }
       }
       @media (max-width: 600px) {
-        #mobile {
+        #open-menu {
           right: 0.5rem;
         }
       }
       @media (max-width: 480px) {
-        #mobile {
+        #open-menu {
           right: 0.2rem;
         }
       }
@@ -488,7 +516,7 @@
         font-size: 1rem;
       }
 
-      #mobile {
+      #open-menu {
         padding: 10px;
       }
 
@@ -510,10 +538,27 @@
 
     /* Focus styles for accessibility */
     #navbar li a:focus,
-    #mobile:focus,
-    #close:focus {
+    #open-menu:focus,
+    #close-menu:focus {
       outline: 2px solid #ffd700;
       outline-offset: 2px;
     }
   </style>
+  <script>
+    // JavaScript to handle mobile menu toggle
+    const openbtn = document.getElementById("open-menu");
+    const closebtn = document.getElementById("close-menu");
+    const navbar = document.getElementById("navbar");
+
+    openbtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      navbar.classList.add("open");
+      console.log("Menu opened");
+    });
+
+    closebtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      navbar.classList.remove("open");
+    });
+  </script>
 </template>
