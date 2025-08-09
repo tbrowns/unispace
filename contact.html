@@ -4,10 +4,435 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="./css/all.css" />
+
     <title>UNISPACE OPPORTUNITIES LTD</title>
     <link rel="icon" type="image/x-icon" href="./img/FAV/favicon.ico" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f7fafc;
+      }
+
+      .section-p1 {
+        padding: 40px 80px;
+      }
+
+      /* Contact Details Section */
+      #contact-details {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .details {
+        flex: 1;
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .details h2 {
+        color: #155724;
+        margin-bottom: 16px;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .details p {
+        color: #6c757d;
+        margin-bottom: 16px;
+        font-size: 14px;
+      }
+
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        background: rgba(40, 167, 69, 0.1);
+        border-radius: 10px;
+        border-left: 4px solid #28a745;
+        transition: all 0.3s ease;
+      }
+
+      .contact-item:hover {
+        transform: translateX(5px);
+        box-shadow: 0 5px 15px rgba(40, 167, 69, 0.2);
+        background: rgba(40, 167, 69, 0.15);
+      }
+
+      .contact-icon {
+        width: 40px;
+        height: 40px;
+
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .social-links {
+        margin-top: 25px;
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-link {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #f7fafc, #daebde);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        transition: all 0.3s ease;
+      }
+
+      .social-link:hover {
+        transform: translateY(-3px) scale(1.1);
+        box-shadow: 0 10px 25px rgba(40, 167, 69, 0.4);
+        background: linear-gradient(135deg, #f7fafc, #43a85a);
+      }
+
+      /* Interactive Map Container */
+      .map-container {
+        flex: 1;
+        background: rgba(255, 255, 255, 1);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        position: relative;
+        min-height: 450px;
+      }
+
+      .map-header {
+        padding: 20px;
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+        text-align: center;
+      }
+
+      .map-header h3 {
+        margin-bottom: 8px;
+        font-size: 22px;
+        font-weight: bold;
+      }
+
+      .map-header p {
+        margin: 0;
+        opacity: 0.9;
+        font-size: 14px;
+      }
+
+      .map-controls {
+        padding: 15px;
+        background: rgba(40, 167, 69, 0.05);
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .map-btn {
+        padding: 10px 16px;
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .map-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+        background: linear-gradient(135deg, #20c997, #17a2b8);
+      }
+
+      .interactive-map {
+        height: 320px;
+        position: relative;
+        background: linear-gradient(135deg, #d4edda 0%, #f8f9fa 100%);
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      .map-marker {
+        position: absolute;
+        width: 35px;
+        height: 35px;
+        background: #dc3545;
+        border: 3px solid #fff;
+        border-radius: 50% 50% 50% 0;
+        transform: rotate(-45deg);
+        cursor: pointer;
+        animation: bounce 2s infinite;
+        left: 50%;
+        top: 50%;
+        margin-left: -17.5px;
+        margin-top: -17.5px;
+        box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+      }
+
+      .map-marker:before {
+        content: "🏢";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+        font-size: 14px;
+      }
+
+      .map-tooltip {
+        position: absolute;
+        bottom: 40px;
+        left: -80px;
+        background: rgba(33, 37, 41, 0.95);
+        color: white;
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-size: 12px;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        transform: rotate(45deg);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .map-marker:hover .map-tooltip {
+        opacity: 1;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0) rotate(-45deg);
+        }
+        40% {
+          transform: translateY(-12px) rotate(-45deg);
+        }
+        60% {
+          transform: translateY(-6px) rotate(-45deg);
+        }
+      }
+
+      /* Form Section Styling */
+      #form-details {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        margin: 40px 60px;
+      }
+
+      form {
+        width: 55%;
+        background: rgba(255, 255, 255, 1);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      form span {
+        font-size: 14px;
+        color: #28a745;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      form h2 {
+        font-size: 32px;
+        color: #155724;
+        margin: 15px 0 30px 0;
+        font-weight: bold;
+      }
+
+      form input,
+      form textarea {
+        width: 95%;
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 2px solid rgba(40, 167, 69, 0.3);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.9);
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+
+      form input:focus,
+      form textarea:focus {
+        outline: none;
+        border-color: #28a745;
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+        transform: translateY(-2px);
+      }
+
+      form textarea {
+        resize: vertical;
+        min-height: 120px;
+        font-family: inherit;
+      }
+
+      .normal {
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+        padding: 15px 40px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .normal:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+        background: linear-gradient(135deg, #20c997, #17a2b8);
+      }
+
+      /* Quotes Section */
+      .quotes {
+        width: 35%;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      .quotes div {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid #28a745;
+        transition: all 0.3s ease;
+      }
+
+      .quotes div:hover {
+        transform: translateX(5px);
+        box-shadow: 0 12px 35px rgba(40, 167, 69, 0.2);
+        border-left-color: #20c997;
+      }
+
+      .quotes img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+        border: 3px solid #28a745;
+        transition: all 0.3s ease;
+      }
+
+      .quotes div:hover img {
+        border-color: #20c997;
+        transform: scale(1.05);
+      }
+
+      .quotes p {
+        font-size: 14px;
+        line-height: 1.7;
+        color: #495057;
+        margin: 0;
+      }
+
+      .quotes span {
+        font-weight: bold;
+        color: #28a745;
+        display: block;
+        margin-bottom: 10px;
+        font-size: 15px;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .section-p1 {
+          padding: 20px 30px;
+        }
+
+        #contact-details {
+          flex-direction: column;
+        }
+
+        #form-details {
+          flex-direction: column;
+          margin: 40px 30px;
+        }
+
+        form,
+        .quotes {
+          width: 100%;
+        }
+
+        .map-controls {
+          justify-content: center;
+        }
+      }
+
+      /* Notification styling */
+      .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+        z-index: 1000;
+        animation: slideIn 0.3s ease;
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideOut {
+        from {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -16,46 +441,129 @@
 
     <section id="contact-details" class="section-p1">
       <div class="details">
-        <img src="./img/contact/Pre-contact-on2.jpg" alt="" />
+        <h2>GET IN TOUCH</h2>
+        <p>Visit our offices or Contact us today</p>
+
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <img src="./icons/office.png" alt="Office Icon" />
+            </div>
+            <div>
+              <strong>Head Office</strong><br />
+              P.O BOX 20657-00200 CITY SQUARE, NAIROBI
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <img src="./icons/email.svg" alt="Email Icon" />
+            </div>
+            <div>
+              <strong>Email</strong><br />
+              unispaceopportunities@gmail.com
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <img src="./icons/whatsapp.svg" alt="Phone Icon" />
+            </div>
+            <div>
+              <strong>Phone</strong><br />
+              +254707 877 847
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <img src="./icons/clock.svg" alt="Hours Icon" />
+            </div>
+            <div>
+              <strong>Hours</strong><br />
+              Monday to Saturday: 9:00AM - 6:00PM
+            </div>
+          </div>
+        </div>
+
+        <div class="social-links">
+          <a href="#" class="social-link"><img src="./icons/whatsapp.svg" /></a>
+          <a href="#" class="social-link"
+            ><img src="./icons/facebook-logo.svg"
+          /></a>
+          <a href="#" class="social-link"
+            ><img src="./icons/twitter-logo.svg"
+          /></a>
+          <a href="#" class="social-link"
+            ><img src="./icons/instagram.svg"
+          /></a>
+        </div>
       </div>
-      <div class="map">
-        <img src="./img/contact/Pre-contact-4.jpg" alt="" />
+
+      <div class="map-container">
+        <div class="map-header">
+          <h3>Find Our Workshop Location</h3>
+          <p>City Square, Nairobi</p>
+        </div>
+
+        <div class="map-controls">
+          <button class="map-btn" onclick="centerMap()">📍 Center Map</button>
+          <button class="map-btn" onclick="toggleView()">
+            🛰 Satellite View
+          </button>
+          <button class="map-btn" onclick="getDirections()">
+            🗺 Get Directions
+          </button>
+        </div>
+
+        <div class="interactive-map" id="map" onclick="mapClick()">
+          <div class="map-marker" id="marker">
+            <div class="map-tooltip">
+              Unispace Opportunities<br />City Square, Nairobi
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <section id="form-details">
-      <form action="">
+      <form action="" onsubmit="handleSubmit(event)">
         <span>LEAVE A MESSAGE</span>
         <h2>Transform Your Space</h2>
-        <input type="text" placeholder="Your Name" />
-        <input type="text" placeholder="E-mail" />
-        <input type="text" placeholder="Subject" />
-        <textarea name="" id="" cols="30" rows="10" placeholder="Your Message">
-        </textarea>
-        <button class="normal">Submit</button>
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="E-mail" required />
+        <input type="text" placeholder="Subject" required />
+        <textarea
+          name=""
+          id=""
+          cols="30"
+          rows="10"
+          placeholder="Your Message"
+          required
+        ></textarea>
+        <button type="submit" class="normal">Submit</button>
       </form>
 
       <div class="quotes">
         <div>
-          <img src="./img/quotes/Ooz2-htma-my.jpg" alt="" />
+          <img src="./img/quotes/Ooz2-htma-my.jpg" alt="Mahatma Gandhi" />
           <p>
-            <span>Mahatma Gandhi</span>“A man is but a product of his thoughts.
+            <span>Mahatma Gandhi</span>"A man is but a product of his thoughts."
           </p>
         </div>
         <div>
-          <img src="./img/quotes/fucius-quotes.jpg" alt="" />
+          <img src="./img/quotes/fucius-quotes.jpg" alt="Confucius" />
           <p>
-            <span>Confucius</span>“Choose a job you love, and you <br />will
-            never have to work a day in your life.”
+            <span>Confucius</span>"Choose a job you love, and you will never
+            have to work a day in your life."
           </p>
         </div>
         <div>
-          <img src="./img/quotes/alb-23-ei045.jpg" alt="" />
+          <img src="./img/quotes/alb-23-ei045.jpg" alt="Albert Einstein" />
           <p>
-            <span>Albert Einstein</span>The true sign of intelligence is <br />
-            not knowledge but imagination. <br />
-            I am enough of an artist to draw freely upon <br />
-            my imagination. Imagination is more important than knowledge.
+            <span>Albert Einstein</span>The true sign of intelligence is not
+            knowledge but imagination. I am enough of an artist to draw freely
+            upon my imagination. Imagination is more important than knowledge.
           </p>
         </div>
       </div>
@@ -65,7 +573,99 @@
 
     <script src="header/header.js"></script>
     <script src="footer/footer.js"></script>
-
     <script src="script.js"></script>
+
+    <script>
+      // Interactive map functionality
+      let isSatelliteView = false;
+
+      function centerMap() {
+        const marker = document.getElementById("marker");
+        marker.style.left = "50%";
+        marker.style.top = "50%";
+        marker.style.animation = "none";
+        setTimeout(() => {
+          marker.style.animation = "bounce 2s infinite";
+        }, 100);
+
+        showNotification("Map centered on Unispace Opportunities location");
+      }
+
+      function toggleView() {
+        const map = document.getElementById("map");
+
+        if (isSatelliteView) {
+          map.style.background =
+            "linear-gradient(135deg, #d4edda 0%, #f8f9fa 100%)";
+          showNotification("Switched to Map View");
+          isSatelliteView = false;
+        } else {
+          map.style.background = `
+            linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)),
+            radial-gradient(circle at 30% 40%, #8B4513 2px, transparent 2px),
+            radial-gradient(circle at 70% 20%, #228B22 1px, transparent 1px),
+            radial-gradient(circle at 50% 80%, #228B22 1px, transparent 1px),
+            radial-gradient(circle at 20% 70%, #8B4513 1px, transparent 1px),
+            linear-gradient(135deg, #8FBC8F 0%, #F5F5DC 100%)
+          `;
+          showNotification("Switched to Satellite View");
+          isSatelliteView = true;
+        }
+      }
+
+      function getDirections() {
+        const address = "P.O BOX 20657-00200 City Square, Nairobi";
+        showNotification("Opening directions to our workshop...");
+
+        setTimeout(() => {
+          showNotification(
+            "📍 Directions: Head to City Square, Nairobi - Look for Unispace Opportunities signage"
+          );
+        }, 1500);
+      }
+
+      function mapClick() {
+        showNotification("🎯 Workshop Location: City Square, Nairobi");
+      }
+
+      function showNotification(message) {
+        const notification = document.createElement("div");
+        notification.className = "notification";
+        notification.textContent = message;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+          notification.style.animation = "slideOut 0.3s ease";
+          setTimeout(() => notification.remove(), 300);
+        }, 3000);
+      }
+
+      function handleSubmit(event) {
+        event.preventDefault();
+        showNotification(
+          "✅ Thank you for your message! We'll get back to you soon."
+        );
+        setTimeout(() => {
+          event.target.reset();
+        }, 500);
+      }
+
+      // Add some interactive enhancements
+      document.addEventListener("DOMContentLoaded", function () {
+        // Enhanced marker interaction
+        const marker = document.getElementById("marker");
+        marker.addEventListener("click", function (e) {
+          e.stopPropagation();
+          this.style.transform = "scale(1.2) rotate(-45deg)";
+          setTimeout(() => {
+            this.style.transform = "scale(1) rotate(-45deg)";
+          }, 200);
+          showNotification(
+            "📍 Unispace Opportunities Workshop - City Square, Nairobi"
+          );
+        });
+      });
+    </script>
   </body>
 </html>
